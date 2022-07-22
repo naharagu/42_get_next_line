@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 20:06:01 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/22 15:05:53 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/22 21:28:41 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*ft_strdup(const char *s1)
 
 	len = ft_strlen(s1);
 	dest = (char *)malloc(len + 1);
-	if (dest == NULL)
+	if (!dest)
 		return (NULL);
 	ft_strlcpy(dest, s1, len + 1);
 	return (dest);
