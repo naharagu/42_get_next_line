@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 20:06:01 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/22 20:57:35 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/22 20:57:09by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*read_fd(int fd, char *input)
 char	*get_line(char *input)
 {
 	char	*output;
-	ssize_t	i;
+	size_t	i;
 
 	output = (char *) malloc(ft_strlen(input) + 2);
 	if (!output)
@@ -65,12 +65,8 @@ char	*get_line(char *input)
 	while (input[i])
 	{
 		output[i] = input[i];
-		if (output[i] == '\n')
-		{
-			i++;
+		if (output[i++] == '\n')
 			break ;
-		}
-		i++;
 	}
 	output[i] = '\0';
 	return (output);
