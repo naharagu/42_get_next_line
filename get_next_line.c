@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 20:06:01 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/22 20:53:12 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/22 20:57:35 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*read_fd(int fd, char *input)
 	char	*buf;
 	ssize_t	count;
 
-	buf = malloc(((ssize_t)BUFFER_SIZE + 1) * sizeof(char));
+	buf = (char *) malloc(BUFFER_SIZE + 1);
 	if (!buf)
 		return (NULL);
 	count = 1;
@@ -58,7 +58,7 @@ char	*get_line(char *input)
 	char	*output;
 	ssize_t	i;
 
-	output = malloc((ft_strlen(input) + 2) * sizeof(char));
+	output = (char *) malloc(ft_strlen(input) + 2);
 	if (!output)
 		return (NULL);
 	i = 0;
