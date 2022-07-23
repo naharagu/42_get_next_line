@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 21:18:48 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/23 10:38:48 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/23 13:03:27 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ char	*safe_free(char *buff, char *input)
 
 char	*read_fd(int fd, char *input)
 {
-	char	*tmp;
 	char	*buf;
+	char	*tmp;
 	ssize_t	count;
 
 	if (!input)
 		input = ft_strdup("");
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!input || !buf)
-		return (NULL);
+		return (safe_free(buf, input));
 	count = 1;
 	while (count && !ft_strchr(input, '\n'))
 	{
@@ -45,11 +45,8 @@ char	*read_fd(int fd, char *input)
 		if (count == -1 || (!count && input[0] == '\0'))
 			return (safe_free(buf, input));
 		buf[count] = '\0';
-		tmp = ft_strjoin(input, buf);
-		if (!tmp)
-			return (safe_free(buf, input));
-		safe_free(NULL, input);
-		input = tmp;
+		tmp = input;
+		input = ft_strjoin(tmp, buf);
 	}
 	safe_free(buf, NULL);
 	return (input);
@@ -86,8 +83,6 @@ char	*parse_line(char *input)
 		return (safe_free(NULL, input));
 	new_input = ft_strdup(&input[++i]);
 	safe_free(NULL, input);
-	if (!new_input)
-		return (NULL);
 	return (new_input);
 }
 
