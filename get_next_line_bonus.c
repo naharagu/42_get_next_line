@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 21:18:48 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/23 17:02:18 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:07:48 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,17 @@ char	*split_input(char *input)
 
 char	*get_next_line(int fd)
 {
-	static char	*input;
+	static char	*input[OPEN_MAX];
 	char		*output;
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-	input = read_fd(fd, input);
-	if (!input)
+	input[fd] = read_fd(fd, input[fd]);
+	if (!input[fd])
 		return (NULL);
-	output = get_one_line(input);
+	output = get_one_line(input[fd]);
 	if (!output)
-		return (safe_free(NULL, input));
-	input = split_input(input);
+		return (safe_free(NULL, input[fd]));
+	input[fd] = split_input(input[fd]);
 	return (output);
 }
