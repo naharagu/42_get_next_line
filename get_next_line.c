@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 21:18:48 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/22 21:26:13 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/23 10:38:48 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ char	*read_fd(int fd, char *input)
 
 	if (!input)
 		input = ft_strdup("");
-	buf = (char *) malloc(BUFFER_SIZE + 1);
+	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!input || !buf)
 		return (NULL);
 	count = 1;
-	while (!ft_strchr(input, '\n') && count != 0)
+	while (count && !ft_strchr(input, '\n'))
 	{
 		count = read(fd, buf, BUFFER_SIZE);
 		if (count == -1 || (!count && input[0] == '\0'))
@@ -60,7 +60,7 @@ char	*get_one_line(char *input)
 	char	*output;
 	size_t	i;
 
-	output = (char *) malloc(ft_strlen(input) + 1);
+	output = malloc((ft_strlen(input) + 1) * sizeof(char));
 	if (!output)
 		return (NULL);
 	i = 0;
@@ -84,8 +84,7 @@ char	*parse_line(char *input)
 		i++;
 	if (!input[i])
 		return (safe_free(NULL, input));
-	i++;
-	new_input = ft_strdup(&input[i]);
+	new_input = ft_strdup(&input[++i]);
 	safe_free(NULL, input);
 	if (!new_input)
 		return (NULL);

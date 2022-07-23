@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 20:06:01 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/22 21:28:41 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/23 09:53:57 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	i = ft_strlen(s1);
 	j = ft_strlen(s2);
-	res = (char *)malloc(i + j + 1);
+	res = malloc((i + j + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
 	ft_strlcpy(res, s1, i + 1);
@@ -81,7 +81,7 @@ char	*ft_strdup(const char *s1)
 	char	*dest;
 
 	len = ft_strlen(s1);
-	dest = (char *)malloc(len + 1);
+	dest = malloc((len + 1) * sizeof(char));
 	if (!dest)
 		return (NULL);
 	ft_strlcpy(dest, s1, len + 1);
