@@ -6,13 +6,11 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 21:18:48 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/23 17:07:48 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/24 09:20:04 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-#include <stdio.h>
+#include "get_next_line_bonus.h"
 
 char	*safe_free(char *buff, char *input)
 {
